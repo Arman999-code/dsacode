@@ -83,6 +83,7 @@ int main(){
         cout<<"2. Search"<<"\n";
         cout<<"3. Delete"<<"\n";
         cout<<"4. Exit"<<"\n";
+        cout<<"Enter the choice of operation you have to perform:";
         cin>>choice;
 
         switch(choice){

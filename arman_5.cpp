@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #include<iostream>
 using namespace std;
 
@@ -86,3 +87,6 @@ int main(){
     return 0;
 
 }
+=======
+
+>>>>>>> 3263ba348e974778976c5265be07fcee4a370d1f
