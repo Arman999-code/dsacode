@@ -1,0 +1,72 @@
+# Function to find the waiting time for all processes
+def findWaitingTime(processes, n, bt, wt, quantum):
+    rem_bt = [0] * n  # Remaining burst times
+
+    # Copy the burst times into rem_bt[]
+    for i in range(n):
+        rem_bt[i] = bt[i]
+
+    t = 0  # Current time
+
+    while True:
+        done = True
+
+        # Traverse all processes one by one
+        for i in range(n):
+            if rem_bt[i] > 0:
+                done = False  # There is a pending process
+
+                if rem_bt[i] > quantum:
+                    # Increase current time by quantum
+                    t += quantum
+                    # Decrease remaining burst time
+                    rem_bt[i] -= quantum
+                else:
+                    # Last cycle for this process
+                    t += rem_bt[i]
+                    wt[i] = t - bt[i]
+                    rem_bt[i] = 0
+
+        # If all processes are done
+        if done:
+            break
+
+
+# Function to calculate turn around time
+def findTurnAroundTime(processes, n, bt, wt, tat):
+    for i in range(n):
+        tat[i] = bt[i] + wt[i]
+
+
+# Function to calculate average waiting and turn-around times
+def findavgTime(processes, n, bt, quantum):
+    wt = [0] * n
+    tat = [0] * n
+
+    findWaitingTime(processes, n, bt, wt, quantum)
+    findTurnAroundTime(processes, n, bt, wt, tat)
+
+    print("Processes\tBurst Time\tWaiting Time\tTurn-Around Time")
+
+    total_wt = 0
+    total_tat = 0
+    for i in range(n):
+        total_wt += wt[i]
+        total_tat += tat[i]
+        print(f"{processes[i]}\t\t{bt[i]}\t\t{wt[i]}\t\t{tat[i]}")
+
+    print(f"\nAverage waiting time = {total_wt / n:.5f}")
+    print(f"Average turn around time = {total_tat / n:.5f}")
+
+
+# Driver code
+if __name__ == "__main__":
+    # Process IDs
+    proc = [1, 2, 3, 4]
+    n = len(proc)
+
+    # Burst time of all processes
+    burst_time = [7, 3, 9, 5]
+    quantum = 3
+
+    findavgTime(proc, n, burst_time, quantum)
