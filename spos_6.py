@@ -53,7 +53,7 @@ def findavgTime(processes, n, bt, quantum):
     for i in range(n):
         total_wt += wt[i]
         total_tat += tat[i]
-        print(f"{processes[i]}\t\t{bt[i]}\t\t{wt[i]}\t\t{tat[i]}")
+        print(f"{processes[i]}\t\t{bt[i]}\t\t{wt[i]}\t\t{tat[i]}") 
 
     print(f"\nAverage waiting time = {total_wt / n:.5f}")
     print(f"Average turn around time = {total_tat / n:.5f}")
